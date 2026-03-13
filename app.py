@@ -1,0 +1,1 @@
+from fastai.vision.all import * import gradio as gr learn = load_learner("export.pkl") def classify(img): pred, pred_idx, probs = learn.predict(img) return {pred: float(probs[pred_idx])} iface = gr.Interface( fn=classify, inputs=gr.Image(type="pil"), outputs=gr.Label() ) iface.launch()
